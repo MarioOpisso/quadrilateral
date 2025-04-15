@@ -4,20 +4,21 @@
 	Details.
 */
 
-#include "CQuadrilateral.h"
+
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
 
+#include<iostream>
 
+#include "CQuadrilateral.h"
 
+using namespace std;
 
 /// @class Rectangle
 /// @brief to manage an object with the shape of a rectangle
 class Rectangle : public Quadrilateral
 {
-private:
-	float height;
-	float width;
+protected:
 	
 
 public:
@@ -33,7 +34,7 @@ public:
 	
 	/// @name OPERATORS
 	/// @{
-	Rectangle& operator=(const Rectangle &r);
+	Rectangle& operator=(const Rectangle &r); 
 	bool operator==(const Rectangle &r);
 	/// @}
 	
@@ -49,13 +50,13 @@ public:
 	/// @{
 	void SetHeight(float h);
 	void SetWidth(float w);
-	void SetDim(float w, float h); 
-		
+	void SetDim(float w, float h);
+	
 	void GetDim(float &w, float &h);
 	float GetHeight();
-	float GetWidth();
-	float GetArea();
+	float GetWidth(); 
 	
+	float GetArea();
 	/// @}
 	
 	

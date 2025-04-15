@@ -4,10 +4,8 @@
 ///	Details.
 ///
 
-#include<iostream> 
-#include <cstring>
-#include "CRectangle.h" 
-using namespace std;
+#include<iostream>
+#include "CRectangle.h"
 
 /// @brief default constructor 
 Rectangle::Rectangle() {
@@ -28,7 +26,7 @@ Rectangle::Rectangle(float w, float h) {
 	cout << "Rectangle - constructor" << endl;
 
 	if (w <= 0. || h <= 0.) {
-		WarningMessage("constructor: width and height should be > 0"); 
+		WarningMessage("Rectangle -- constructor: width and height should be > 0"); 
 		SetDim(0,0);
 	}
 	else
@@ -44,7 +42,6 @@ Rectangle::~Rectangle() {
 
 }
 
-
 /// @brief copy constructor 
 /// @param o reference to the object that should be copied 
 Rectangle::Rectangle(const Rectangle &r) { 
@@ -55,24 +52,50 @@ Rectangle::Rectangle(const Rectangle &r) {
 	
 }
 
+/// @brief overload of operator = 
+/// @param o reference to the object on the right side of the operator 
+/// @return reference to the object on the left side of the operator 
+Rectangle& Rectangle::operator=(const Rectangle &r) { 
+
+	cout << "Rectangle - operator =" << endl;
+
+	Init(r);
+	
+	return *this;
+	
+}
+
+/// @brief overload of operator == 
+/// @param r reference to the object on the right side of the operator 
+/// @return true if the two objects have the same width and the same length  
+bool Rectangle::operator==(const Rectangle &r) { 
+
+	if (r.sides[0] == sides[0] && r.sides[1] == sides[1])
+		return true;
+		
+	return false;
+}
 
 /// @brief default initialization of the object
 void Rectangle::Init() {
-	SetDim(0,0);
+	SetDim(2,1);
+	SetAngles(90,90,90,90);
+	
 }
 
 
 /// @brief initialization of the object as a copy of an object 
 /// @param r reference to the object that should be copied 
 void Rectangle::Init(const Rectangle &r) {
-	
 	Init();
-	SetDim(r.width,r.height); 
+	SetDim(r.sides[0],r.sides[1]);
 }
 
 /// @brief total reset of the object  
 void Rectangle::Reset() {
-	Init();
+	
+	SetDim(2,1);
+	
 }
 
 
@@ -81,11 +104,11 @@ void Rectangle::Reset() {
 void Rectangle::SetWidth(float w) {
 
 	if (w < 0.) {
-		WarningMessage("SetWidth: width should be > 0");
+		WarningMessage("Rectangle -- SetWidth: width should be > 0");
 		return;
 	}
 
-	SetDim(w,height);
+	SetDim(w,sides[1]);
 
 }
 
@@ -94,11 +117,11 @@ void Rectangle::SetWidth(float w) {
 void Rectangle::SetHeight(float h) {
 
 	if (h < 0.) {
-		WarningMessage("SetHeight: height should be > 0");
+		WarningMessage("Rectangle -- SetHeight: height should be > 0");
 		return;
 	}
 
-	SetDim(width,h);
+	SetDim(sides[0],h);
 
 }
 
@@ -108,7 +131,7 @@ void Rectangle::SetHeight(float h) {
 /// @return width 
 float Rectangle::GetWidth() {
 
-	return width;
+	return sides[0];
 
 }
 
@@ -116,7 +139,7 @@ float Rectangle::GetWidth() {
 /// @return height
 float Rectangle::GetHeight() {
 
-	return height;
+	return sides[1];
 }
 
 /// @brief set width and length of the object
@@ -124,9 +147,7 @@ float Rectangle::GetHeight() {
 /// @param h height
 void Rectangle::SetDim(float w, float h) {
 
-	width = w;
-	height = h;  
-	Quadrilateral::SetSides(w,h,w,h);
+	SetSides(w,h,w,h);
 	
 	return;
 }
@@ -136,8 +157,8 @@ void Rectangle::SetDim(float w, float h) {
 /// @param h height
 void Rectangle::GetDim(float &w, float &h) {
 
-	w = width;
-	h = height; 
+	w = sides[0];
+	h = sides[1]; 
 	
 	return;
 }
@@ -146,8 +167,10 @@ void Rectangle::GetDim(float &w, float &h) {
 /// @return the area 
 float Rectangle::GetArea() {
 	
-	return (width*height);
+	return (sides[0]*sides[1]);
 }
+
+
 
 /// @brief for debugging: all about the object
 void Rectangle::Dump() {
@@ -155,35 +178,12 @@ void Rectangle::Dump() {
 	cout << "---Rectangle---" << endl; 
 	cout << endl;
 	
-	cout << "Width = " << width << endl;
-	cout << "Heigth = " << height << endl; 
+	cout << "Width = " << sides[0] << endl;
+	cout << "Heigth = " << sides[1] << endl;
+	cout << "Area = " << GetArea() << endl;
 	
 	Quadrilateral::Dump();
+	
 	cout << endl;
+
 }
-
-Rectangle& Rectangle::operator=(const Rectangle &r)
-{
-	cout << "Rectangle - operator =" << endl;
-	
-	Init(r);
-	
-	return *this;
-}
-
-bool Rectangle::operator==(const Rectangle &r)
-{
-	if((width == r.width)||(width == r.height))
-	{
-		if((height == r.width)||(height == r.height))
-		{
-			return true;
-		}
-	}
-	return false;
-}
-
-
-
-
-
