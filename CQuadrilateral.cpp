@@ -28,16 +28,16 @@ Quadrilateral::~Quadrilateral() {
 
 
 /// @brief sets the value of the four sides 
-/// @param s1 side 1 
-/// @param s2 side 2 
-/// @param s3 side 3
-/// @param s4 side 4 
-void Quadrilateral::SetSides(float s1, float s2, float s3, float s4) {
+/// @param s0 side 1 
+/// @param s1 side 2 
+/// @param s2 side 3
+/// @param s3 side 4 
+void Quadrilateral::SetSides(float s0, float s1, float s2, float s3) {
 	
-	sides[0] = s1;
-	sides[1] = s2;
-	sides[2] = s3;
-	sides[3] = s4; 
+	sides[0] = s0;
+	sides[1] = s1;
+	sides[2] = s2;
+	sides[3] = s3; 
 	
 	return;
 

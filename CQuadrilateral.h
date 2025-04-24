@@ -60,6 +60,7 @@ public:
 			
 	/// @name GETTERS
 	/// @{
+	virtual float GetArea()=0;
 	float GetPerimeter();
 	void GetSides(float &s0, float &s1, float &s2, float &s3);
 	void GetAngles(float &a0, float &a1, float &a2, float &a3);
@@ -70,7 +71,7 @@ public:
 	/// @{
 	void ErrorMessage(const char *string); 
 	void WarningMessage(const char *string);
-	void Dump();
+	virtual void Dump();
 	/// @}
 
 };

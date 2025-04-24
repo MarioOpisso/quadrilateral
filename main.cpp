@@ -5,22 +5,15 @@
 int main()
 {
 		float area;
-		float a0, a1, a2, a3;
 		
-		Quadrilateral qdr;			
+		Quadrilateral *arr[2];			
 		Rectangle r1;
 		Rectangle r2(1, 7);
 						
 
-		qdr.Dump();					
-		r1.Dump();
-		r2.Dump();
+		arr[0] = &r1;
+		arr[1] = &r2;
 		
-		area = r1.GetArea();
-		cout << "rettangolo 1 - area: " << area << endl;
-		
-		r1=r2;
-		
-		area = r1.GetArea();
-		cout << "rettangolo 1 - area: " << area << endl;
+		arr[0]-> Dump();
+		arr[1]-> Dump();
 }
